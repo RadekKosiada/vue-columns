@@ -42,8 +42,7 @@
         <td><input type="text" id="0" name="city__{{ company.id }}" value="{{ company.city|default_if_none:'' }}"></td>
         <td><input type="text" id="0" name="latitude__{{ company.id }}" value="{{ company.latitude|default_if_none:'' }}"></td>
         <td><input type="text" id="0" name="longitude__{{ company.id }}" value="{{ company.longitude|default_if_none:'' }}"></td>
-        <td><input type="checkbox" id="0" onclick="if(this.checked){changeColor(event)}" class="check-box" name="level__{{ company.id }}"
-            placeholder="city" value="{{ company.level|default_if_none:'' }}"></td>
+        <td><input type="checkbox" id="0" class="check-box" name="level__{{ company.id }}" placeholder="city" value="{{ company.level|default_if_none:'' }}"></td>
       </tr>
     </tbody>
   </table>
@@ -100,49 +99,136 @@
         <td><input type="text" id="2" name="city__{{ company.id }}" value="{{ company.city|default_if_none:'' }}"></td>
         <td><input type="text" id="2" name="latitude__{{ company.id }}" value="{{ company.latitude|default_if_none:'' }}"></td>
         <td><input type="text" id="2" name="longitude__{{ company.id }}" value="{{ company.longitude|default_if_none:'' }}"></td>
-        <td><input type="checkbox" id="2" class="check-box" onclick="if(this.checked){changeColor(event)}else{changeColorBack(event)}" name="level__{{ company.id }}"
-            placeholder="city" value="{{ company.level|default_if_none:'' }}"></td>
+        <td><input type="checkbox" id="2" class="check-box" name="level__{{ company.id }}" placeholder="city" value="{{ company.level|default_if_none:'' }}"></td>
       </tr>
     </tbody>
   </table>
 
   <script>
     var checkBox = document.getElementsByClassName("check-box"); //HTML Collection
-    // console.log(checkBox.length);
     var inputFields = document.getElementsByTagName("input");
-
-    for (var i = 0; i < checkBox.length; i++) {
-      checkBox[i].addEventListener("change", changeColor.bind(event));
-    }
-
-    function changeColor(event) {
-      for (var i = 0; i < inputFields.length; i++) {
-        if (event.target.getAttribute("id") == inputFields[i].id) {
-          inputFields[i].style = "background-color: orange"
-          console.log("yes", inputFields[i])
-        }
-        // else {
-        // console.log("no", inputFields[i])
-        // inputFields[i].style = "background-color: purple"
-        // }
-        // }
+    
+    //adding click event to all the checkboxes;
+    for (var i = 0; i < checkBox.length; i++) {   
+        checkBox[i].addEventListener("click", check.bind(event));
       }
-    };
 
-    function changeColorBack(event) {
-      console.log("UNCHECKED!!!")
-      for (var i = 0; i < inputFields.length; i++) {
-        if (event.target.getAttribute("id") == inputFields[i].id) {
-          inputFields[i].style = "background-color: purple"
-         
+      //function triggered with a 'check';
+      function check(event) {        
+        //looping through all inputs
+        for(var i =0; i <inputFields.length; i++) {
+          //if checked
+          if(event.target.checked) {
+          console.log("yes", event.target.id)
+          //and if ids of the check-box and all inputs are the same
+          if(event.target.id== inputFields[i].getAttribute("id")) {
+            console.log("the same")
+            //change the background
+            inputFields[i].style="background-color: green"
+          } else {
+            console.log("different")
+          }
+          //if not checked, leave it or bring it back to white
+        } else {
+          console.log("no",event.target.id)
+          inputFields[i].style="background-color: white"
         }
-        // else {
-        // console.log("no", inputFields[i])
-        // inputFields[i].style = "background-color: purple"
-        // }
-        // }
+        }
+        
       }
-    }
+     
+
+    // function check(event) {
+    //   var check = document.getElementsByTagName('input');
+    //   for (var i = 0; i < check.length; i++) {
+    //     if (check[i].type == 'checkbox') {
+    //       event.target.checked = true;
+    //       console.log("YAAAAY");
+    //     }
+    //   }
+    // }
+
+    // function uncheck(event) {
+    //   var uncheck = document.getElementsByTagName('input');
+    //   for (var i = 0; i < uncheck.length; i++) {
+    //     if (uncheck[i].type == 'checkbox') {
+    //       event.target.checked = false;
+    //       console.log("YOOPIYAY!!");
+    //     }
+    //   }
+    // }
+
+    // function check(event) {
+    //   // console.log("YAAAY");
+    //   for (var i = 0; i < checkBox.length; i++) {
+    //     if (!event.target.checked) {
+    //       event.target.checked = true;
+    //       console.log("YUPPIYAYEY", event.target.checked);
+
+    //     } else {
+    //       event.target.checked = false;
+    //       console.log("YAAAY", event.target.checked);
+    //     }
+    //   }
+
+    //   // event.target.addEventListener("click", uncheck.bind(event));
+    //   // console.log("YAAAY", event.target.checked);
+    //   // event.target.addEventListener("click", uncheck.bind(event));
+    //   // event.target.removeEventListener("click", check.bind(event));
+    // }
+
+// function uncheck(event) {
+//   event.target.checked = false;
+
+//   event.target.addEventListener("click", check.bind(event));
+//    console.log("YUPPIYAYEY", event.target.id, event.target.checked);
+//   // event.target.removeEventListener("click", uncheck.bind(event));
+// }
+
+//     function check(event) {
+//       if(!event.target.hasAttribute("checked")){
+//         event.target.hasAttribute("checked") = true;
+//         console.log(event.target.hasAttribute("checked"))
+//       } else {
+//         event.target.hasAttribute("checked") = false; 
+//         console.log(event.target.hasAttribute("checked"));
+//       }
+
+
+// console.log(checkBox[1].hasAttribute("checked"))
+
+// }
+
+// function uncheck(event) {
+//   // if(event.target.hasAttribute("checked")){
+//   //       event.target.checked = false;
+//         console.log("uncheck")
+//       // }
+// } 
+
+
+    // function changeColor(event) {
+      // console.log("change event fired!!!!")
+      // console.log(event.target.getAttribute("id"))
+      //fix the line below!!!!
+      // event.target.checked = true;
+
+      // if (event.target.hasAttribute("checked")) {
+      //   console.log("checked")
+      // for (var i = 0; i < inputFields.length; i++) {      
+      //   if (event.target.getAttribute("id") == inputFields[i].id) {
+
+      //       inputFields[i].style = "background-color: orange"
+      //       console.log("yes", inputFields[i])
+      //     } 
+      //     else {
+      //       console.log("no", inputFields[i])
+      //       inputFields[i].style = "background-color: purple"
+      //     }
+      //   }
+
+    // }
+    // };
 
     // for (var i = 0; i < inputFields.length; i++) {
     //   for (var j = 0; j < checkBox.length; j++) {
