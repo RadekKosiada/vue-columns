@@ -1,23 +1,167 @@
 <!DOCTYPE html>
- <html class="no-js"> 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-      <div id="app">
+<html class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- <div id="app">
         <div id="some-div" v-bind:style="gridStyle">
             <div class="smaller-div"></div>{{ numOfColumns }}
             <div class="smaller-div"></div>
         </div>
-      </div>
-        
-      <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-        <script src="script.js"></script>
-        
-    </body>
+      </div> -->
+
+  <table id="geo" class="table table-sm compact table-bordered table-striped table-responsive" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col">Web page</th>
+        <th scope="col">Name</th>
+        <th scope="col">API result</th>
+        <th scope="col">Original Country</th>
+        <th scope="col">Original State</th>
+        <th scope="col">Original City</th>
+        <th scope="col">API Latitude</th>
+        <th scope="col">API Longitude</th>
+        <th scope="col">API Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="empty">
+        <td><a href="http://{{ company.url }}" target="_blank">{{ company.url }}</a></td>
+        <td><a href="/interface/{{ company.id }}/" target="_blank">{{ company.name }}</a></td>
+        <td>{{ company.address }}</td>
+        <td><input type="text" id="0" name="country__{{ company.id }}" value="{{ company.country|default_if_none:'' }}"></td>
+        <td><input type="text" id="0" name="state__{{ company.id }}" value="{{ company.state|default_if_none:'' }}"></td>
+        <td><input type="text" id="0" name="city__{{ company.id }}" value="{{ company.city|default_if_none:'' }}"></td>
+        <td><input type="text" id="0" name="latitude__{{ company.id }}" value="{{ company.latitude|default_if_none:'' }}"></td>
+        <td><input type="text" id="0" name="longitude__{{ company.id }}" value="{{ company.longitude|default_if_none:'' }}"></td>
+        <td><input type="checkbox" id="0" onclick="if(this.checked){changeColor(event)}" class="check-box" name="level__{{ company.id }}"
+            placeholder="city" value="{{ company.level|default_if_none:'' }}"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table id="geo" class="table table-sm compact table-bordered table-striped table-responsive" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col">Web page</th>
+        <th scope="col">Name</th>
+        <th scope="col">API result</th>
+        <th scope="col">Original Country</th>
+        <th scope="col">Original State</th>
+        <th scope="col">Original City</th>
+        <th scope="col">API Latitude</th>
+        <th scope="col">API Longitude</th>
+        <th scope="col">API Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="empty">
+        <td><a href="http://{{ company.url }}" target="_blank">{{ company.url }}</a></td>
+        <td><a href="/interface/{{ company.id }}/" target="_blank">{{ company.name }}</a></td>
+        <td>{{ company.address }}</td>
+        <td><input type="text" id="1" name="country__{{ company.id }}" value="{{ company.country|default_if_none:'' }}"></td>
+        <td><input type="text" id="1" name="state__{{ company.id }}" value="{{ company.state|default_if_none:'' }}"></td>
+        <td><input type="text" id="1" name="city__{{ company.id }}" value="{{ company.city|default_if_none:'' }}"></td>
+        <td><input type="text" id="1" name="latitude__{{ company.id }}" value="{{ company.latitude|default_if_none:'' }}"></td>
+        <td><input type="text" id="1" name="longitude__{{ company.id }}" value="{{ company.longitude|default_if_none:'' }}"></td>
+        <td><input type="checkbox" id="1" class="check-box" name="level__{{ company.id }}" placeholder="city" value="{{ company.level|default_if_none:'' }}"></td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="geo" class="table table-sm compact table-bordered table-striped table-responsive" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col">Web page</th>
+        <th scope="col">Name</th>
+        <th scope="col">API result</th>
+        <th scope="col">Original Country</th>
+        <th scope="col">Original State</th>
+        <th scope="col">Original City</th>
+        <th scope="col">API Latitude</th>
+        <th scope="col">API Longitude</th>
+        <th scope="col">API Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="empty">
+        <td><a href="http://{{ company.url }}" target="_blank">{{ company.url }}</a></td>
+        <td><a href="/interface/{{ company.id }}/" target="_blank">{{ company.name }}</a></td>
+        <td>{{ company.address }}</td>
+        <td><input type="text" id="2" name="country__{{ company.id }}" value="{{ company.country|default_if_none:'' }}"></td>
+        <td><input type="text" id="2" name="state__{{ company.id }}" value="{{ company.state|default_if_none:'' }}"></td>
+        <td><input type="text" id="2" name="city__{{ company.id }}" value="{{ company.city|default_if_none:'' }}"></td>
+        <td><input type="text" id="2" name="latitude__{{ company.id }}" value="{{ company.latitude|default_if_none:'' }}"></td>
+        <td><input type="text" id="2" name="longitude__{{ company.id }}" value="{{ company.longitude|default_if_none:'' }}"></td>
+        <td><input type="checkbox" id="2" class="check-box" onclick="if(this.checked){changeColor(event)}else{changeColorBack(event)}" name="level__{{ company.id }}"
+            placeholder="city" value="{{ company.level|default_if_none:'' }}"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    var checkBox = document.getElementsByClassName("check-box"); //HTML Collection
+    // console.log(checkBox.length);
+    var inputFields = document.getElementsByTagName("input");
+
+    for (var i = 0; i < checkBox.length; i++) {
+      checkBox[i].addEventListener("change", changeColor.bind(event));
+    }
+
+    function changeColor(event) {
+      for (var i = 0; i < inputFields.length; i++) {
+        if (event.target.getAttribute("id") == inputFields[i].id) {
+          inputFields[i].style = "background-color: orange"
+          console.log("yes", inputFields[i])
+        }
+        // else {
+        // console.log("no", inputFields[i])
+        // inputFields[i].style = "background-color: purple"
+        // }
+        // }
+      }
+    };
+
+    function changeColorBack(event) {
+      console.log("UNCHECKED!!!")
+      for (var i = 0; i < inputFields.length; i++) {
+        if (event.target.getAttribute("id") == inputFields[i].id) {
+          inputFields[i].style = "background-color: purple"
+         
+        }
+        // else {
+        // console.log("no", inputFields[i])
+        // inputFields[i].style = "background-color: purple"
+        // }
+        // }
+      }
+    }
+
+    // for (var i = 0; i < inputFields.length; i++) {
+    //   for (var j = 0; j < checkBox.length; j++) {
+    //     if (checkBox[j].id == inputFields[i].id) {
+    //       if (checkBox[j].hasAttribute("checked")) {
+    //         inputFields[i].style = "background-color: orange"
+    //       } else {
+    //         inputFields[i].style = "background-color: purple"
+    //       }
+    //     }
+    //   }
+    // }
+
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="script.js"></script>
+
+</body>
+
 </html>
