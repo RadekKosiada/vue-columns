@@ -104,143 +104,100 @@
     </tbody>
   </table>
 
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  <input class="test-input" placeholder="Click here, then press and release a key." size="40">
+  
+  <p id="log"></p>
+
+
   <script>
+
+    // focusMethod = function getFocus() {
+    //   document.getElementById("myTextField").focus();
+    // }
+
+    const input = document.querySelectorAll('.test-input');
+    const log = document.getElementById('log');
+      console.log(input)
+    
+      for(var i=0; i <input.length; i++) {
+        input[i].setAttribute("id", i);
+        input[i].addEventListener('keydown', logKey);
+      }
+    
+
+    function logKey(e) {
+      
+      if(e.keyCode == 13) {
+        for(var i=0; i < input.length; i++) {
+          if(e.target.hasAttribute("id")==i){
+            var index= Number(e.target.getAttribute("id"));
+            console.log(typeof Number(index));
+          input[index+1].focus();
+
+          // console.log(i, i+1)
+        }
+        }
+      }
+       
+        
+      
+    }
+
     var checkBox = document.getElementsByClassName("check-box"); //HTML Collection
     var inputFields = document.getElementsByTagName("input");
-    
-    //adding click event to all the checkboxes;
-    for (var i = 0; i < checkBox.length; i++) {   
-        checkBox[i].addEventListener("click", check.bind(event));
-      }
 
-      //function triggered with a 'check';
-      function check(event) {        
-        //looping through all inputs
-        for(var i =0; i <inputFields.length; i++) {
-          //if checked
-          if(event.target.checked) {
+    //adding click event to all the checkboxes;
+    for (var i = 0; i < checkBox.length; i++) {
+      checkBox[i].addEventListener("click", check.bind(event));
+      // checkBox[i].addEventListener("keyup", switchInput.bind(event));
+    }
+
+    // input.addEventListener('keyup', logKey);
+
+    // function switchInput(e) {
+    //   console.log(e.code);
+    // }
+
+    //function triggered with a 'check';
+    function check(event) {
+      //looping through all inputs
+      for (var i = 0; i < inputFields.length; i++) {
+        //if checked
+        if (event.target.checked) {
           console.log("yes", event.target.id)
           //and if ids of the check-box and all inputs are the same
-          if(event.target.id== inputFields[i].getAttribute("id")) {
+          if (event.target.id == inputFields[i].getAttribute("id")) {
             console.log("the same")
             //change the background
-            inputFields[i].style="background-color: green"
+            inputFields[i].style = "background-color: green"
           } else {
             console.log("different")
           }
           //if not checked, leave it or bring it back to white
         } else {
-          console.log("no",event.target.id)
-          inputFields[i].style="background-color: white"
+          console.log("no", event.target.id)
+          inputFields[i].style = "background-color: white"
         }
-        }
-        
       }
-     
 
-    // function check(event) {
-    //   var check = document.getElementsByTagName('input');
-    //   for (var i = 0; i < check.length; i++) {
-    //     if (check[i].type == 'checkbox') {
-    //       event.target.checked = true;
-    //       console.log("YAAAAY");
-    //     }
-    //   }
-    // }
-
-    // function uncheck(event) {
-    //   var uncheck = document.getElementsByTagName('input');
-    //   for (var i = 0; i < uncheck.length; i++) {
-    //     if (uncheck[i].type == 'checkbox') {
-    //       event.target.checked = false;
-    //       console.log("YOOPIYAY!!");
-    //     }
-    //   }
-    // }
-
-    // function check(event) {
-    //   // console.log("YAAAY");
-    //   for (var i = 0; i < checkBox.length; i++) {
-    //     if (!event.target.checked) {
-    //       event.target.checked = true;
-    //       console.log("YUPPIYAYEY", event.target.checked);
-
-    //     } else {
-    //       event.target.checked = false;
-    //       console.log("YAAAY", event.target.checked);
-    //     }
-    //   }
-
-    //   // event.target.addEventListener("click", uncheck.bind(event));
-    //   // console.log("YAAAY", event.target.checked);
-    //   // event.target.addEventListener("click", uncheck.bind(event));
-    //   // event.target.removeEventListener("click", check.bind(event));
-    // }
-
-// function uncheck(event) {
-//   event.target.checked = false;
-
-//   event.target.addEventListener("click", check.bind(event));
-//    console.log("YUPPIYAYEY", event.target.id, event.target.checked);
-//   // event.target.removeEventListener("click", uncheck.bind(event));
-// }
-
-//     function check(event) {
-//       if(!event.target.hasAttribute("checked")){
-//         event.target.hasAttribute("checked") = true;
-//         console.log(event.target.hasAttribute("checked"))
-//       } else {
-//         event.target.hasAttribute("checked") = false; 
-//         console.log(event.target.hasAttribute("checked"));
-//       }
+    }
 
 
-// console.log(checkBox[1].hasAttribute("checked"))
-
-// }
-
-// function uncheck(event) {
-//   // if(event.target.hasAttribute("checked")){
-//   //       event.target.checked = false;
-//         console.log("uncheck")
-//       // }
-// } 
-
-
-    // function changeColor(event) {
-      // console.log("change event fired!!!!")
-      // console.log(event.target.getAttribute("id"))
-      //fix the line below!!!!
-      // event.target.checked = true;
-
-      // if (event.target.hasAttribute("checked")) {
-      //   console.log("checked")
-      // for (var i = 0; i < inputFields.length; i++) {      
-      //   if (event.target.getAttribute("id") == inputFields[i].id) {
-
-      //       inputFields[i].style = "background-color: orange"
-      //       console.log("yes", inputFields[i])
-      //     } 
-      //     else {
-      //       console.log("no", inputFields[i])
-      //       inputFields[i].style = "background-color: purple"
-      //     }
-      //   }
-
-    // }
-    // };
-
-    // for (var i = 0; i < inputFields.length; i++) {
-    //   for (var j = 0; j < checkBox.length; j++) {
-    //     if (checkBox[j].id == inputFields[i].id) {
-    //       if (checkBox[j].hasAttribute("checked")) {
-    //         inputFields[i].style = "background-color: orange"
-    //       } else {
-    //         inputFields[i].style = "background-color: purple"
-    //       }
-    //     }
-    //   }
-    // }
 
   </script>
 
