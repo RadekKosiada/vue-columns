@@ -147,9 +147,24 @@
           if(e.target.hasAttribute("id")==i){
             var index= Number(e.target.getAttribute("id"));
             console.log(typeof Number(index));
-          input[index+1].focus();
+            if(index>=0 && index <input.length && index != input.length-1){
+              input[index+1].focus();
+              console.log(index, index+1, input.length, input[0])
+            } 
+            if (index == input.length-1) {
+              console.log("yaay")
+              input[0].focus();
+            }
 
-          // console.log(i, i+1)
+            // if(index>0 && input<=input.length-1) {
+            //   input[index+1].focus();
+            // } else {
+            //   input[0].focus();
+            // }
+          
+        
+
+          
         }
         }
       }
